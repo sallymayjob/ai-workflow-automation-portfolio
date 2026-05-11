@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real Estate Onboarding System — Sally May Saclauso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#fafafa;--surface:#fff;--text:#1a1a1a;--text-secondary:#6b7280;--accent:#2563eb;--accent-light:#eff6ff;--border:#e5e7eb;--radius:12px;--shadow-sm:0 1px 2px rgba(0,0,0,.04);--shadow-md:0 4px 16px rgba(0,0,0,.06);--max-width:760px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    nav .nav-inner{max-width:var(--max-width);margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+    nav .logo{font-weight:700;font-size:16px;letter-spacing:-.3px;text-decoration:none;color:var(--text)}
+    nav .back-link{font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+    nav .back-link:hover{color:var(--accent)}
+    .hero-section{padding-top:120px;padding-bottom:56px;max-width:var(--max-width);margin:0 auto;padding-left:24px;padding-right:24px}
+    .project-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .hero-section h1{font-size:34px;font-weight:700;letter-spacing:-.8px;line-height:1.2;margin-bottom:16px}
+    .hero-section .subtitle{font-size:17px;color:var(--text-secondary);max-width:600px;margin-bottom:24px}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+    .tag{font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;letter-spacing:.2px}
+    .tag.blue{background:#eff6ff;color:#2563eb}.tag.green{background:#ecfdf5;color:#059669}.tag.purple{background:#f5f3ff;color:#7c3aed}.tag.orange{background:#fff7ed;color:#ea580c}.tag.pink{background:#fdf2f8;color:#db2777}.tag.gray{background:#f3f4f6;color:#4b5563}
+    .divider{max-width:var(--max-width);margin:0 auto;padding:0 24px}
+    .divider hr{border:none;border-top:1px solid var(--border)}
+    section{max-width:var(--max-width);margin:0 auto;padding:56px 24px}
+    section h2{font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:16px}
+    section p{color:var(--text-secondary);margin-bottom:16px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+    .card h3{font-size:16px;font-weight:600;margin-bottom:8px}
+    .card p{margin-bottom:0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .process-step{display:flex;gap:20px;align-items:flex-start;margin-bottom:20px}
+    .step-marker{width:36px;height:36px;border-radius:50%;background:var(--accent-light);color:var(--accent);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .step-content h4{font-size:15px;font-weight:600;margin-bottom:4px}
+    .step-content p{font-size:14px;color:var(--text-secondary);margin:0}
+    .feature-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .feature-list li{padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:14px;display:flex;align-items:flex-start;gap:10px}
+    .feature-list li .num{font-weight:700;color:var(--accent);min-width:24px}
+    .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center}
+    .stat .value{font-size:28px;font-weight:700;color:var(--accent);margin-bottom:4px}
+    .stat .label{font-size:12px;color:var(--text-secondary);font-weight:500}
+    .cta-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:40px;text-align:center}
+    .cta-box h2{margin-bottom:8px}
+    .cta-box p{max-width:400px;margin:0 auto 20px}
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:var(--shadow-md)}
+    footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--text-secondary);border-top:1px solid var(--border)}
+    .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:640px){.hero-section{padding-top:100px}.hero-section h1{font-size:26px}.two-col,.stat-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <nav><div class="nav-inner">
+    <a href="index.html" class="logo">Sally May Saclauso</a>
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+  </div></nav>
+
+  <div class="hero-section">
+    <div class="project-label">Project 05</div>
+    <h1>Real Estate Client Onboarding System</h1>
+    <p class="subtitle">An automated client onboarding workflow for real estate teams — integrating Google Drive, Forms, Sheets, and Gmail into a seamless new-client pipeline that eliminates manual handoffs.</p>
+    <div class="tags">
+      <span class="tag green">Google Workspace</span>
+      <span class="tag blue">Google Forms</span>
+      <span class="tag orange">Gmail</span>
+      <span class="tag gray">Real Estate</span>
+    </div>
+  </div>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>The Problem</h2>
+    <p>Real estate teams onboard new clients through a maze of emails, phone calls, and scattered documents. Intake forms get lost, follow-up emails are forgotten, documents end up in the wrong folders, and agents waste hours on administrative tasks instead of selling. Every new client means repeating the same manual steps — and every missed step risks losing the deal.</p>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>The Solution</h2>
+    <p>I designed and built a fully automated onboarding system using only free Google Workspace tools. A single form submission triggers the entire pipeline — creating client folders, sending welcome emails, populating tracking sheets, and notifying the assigned agent. No manual steps, no missed follow-ups.</p>
+    <div class="two-col">
+      <div class="card">
+        <h3>For Agents</h3>
+        <p>Instant Slack/email notification when a new client submits their intake form. Client folder pre-built with templates. Tracking dashboard auto-updated.</p>
+      </div>
+      <div class="card">
+        <h3>For Clients</h3>
+        <p>Professional welcome email with next steps. All documents organized in one place. Clear timeline and expectations from day one.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Process &amp; Workflow</h2>
+    <div class="process-step">
+      <div class="step-marker">1</div>
+      <div class="step-content"><h4>Client Intake Form</h4><p>Custom Google Form captures all essential client information — contact details, property preferences, budget range, timeline, and special requirements.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">2</div>
+      <div class="step-content"><h4>Automatic Folder Creation</h4><p>Google AppScript creates a structured client folder in Drive with pre-loaded templates for contracts, disclosures, and correspondence.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">3</div>
+      <div class="step-content"><h4>Welcome Email Dispatch</h4><p>Gmail sends a personalized welcome email with next steps, team contact info, and links to their client folder and relevant documents.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">4</div>
+      <div class="step-content"><h4>Dashboard Update</h4><p>Client details auto-populate the master tracking sheet — pipeline stage, assigned agent, intake date, and all form responses.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">5</div>
+      <div class="step-content"><h4>Agent Notification</h4><p>The assigned agent receives an instant notification with the client summary and a direct link to their folder and tracking entry.</p></div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Key Features</h2>
+    <ul class="feature-list">
+      <li><span class="num">01</span><div><strong>Zero manual steps</strong> — from form submission to agent notification, everything runs automatically via AppScript triggers.</div></li>
+      <li><span class="num">02</span><div><strong>Structured folder hierarchy</strong> — consistent naming conventions and pre-loaded templates ensure every client gets the same professional experience.</div></li>
+      <li><span class="num">03</span><div><strong>Real-time dashboard</strong> — master tracking sheet gives the team instant visibility into pipeline status and workload distribution.</div></li>
+      <li><span class="num">04</span><div><strong>Free tools only</strong> — the entire system runs on Google Workspace with no paid subscriptions or third-party dependencies.</div></li>
+    </ul>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Results &amp; Impact</h2>
+    <div class="stat-grid">
+      <div class="stat"><div class="value">0</div><div class="label">Manual Steps</div></div>
+      <div class="stat"><div class="value">5</div><div class="label">Auto Triggers</div></div>
+      <div class="stat"><div class="value">$0</div><div class="label">Tool Cost</div></div>
+      <div class="stat"><div class="value">100%</div><div class="label">Google Workspace</div></div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Tools Used</h2>
+    <div class="tags">
+      <span class="tag green">Google Drive</span>
+      <span class="tag blue">Google Forms</span>
+      <span class="tag orange">Google Sheets</span>
+      <span class="tag purple">Google AppScript</span>
+      <span class="tag pink">Gmail</span>
+      <span class="tag gray">Slack</span>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section>
+    <div class="cta-box fade-in">
+      <h2>Interested in this project?</h2>
+      <p>I'd love to help your team automate client onboarding with zero additional tool costs.</p>
+      <a href="index.html#contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
+
+  <footer>&copy; 2026 Sally May Saclauso. Built with care.</footer>
+  <script>const observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:.1});document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));</script>
+</body>
+</html>

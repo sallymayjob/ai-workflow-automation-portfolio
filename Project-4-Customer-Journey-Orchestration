@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Journey Orchestration — Sally May Saclauso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#fafafa;--surface:#fff;--text:#1a1a1a;--text-secondary:#6b7280;--accent:#2563eb;--accent-light:#eff6ff;--border:#e5e7eb;--radius:12px;--shadow-sm:0 1px 2px rgba(0,0,0,.04);--shadow-md:0 4px 16px rgba(0,0,0,.06);--max-width:760px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    nav .nav-inner{max-width:var(--max-width);margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+    nav .logo{font-weight:700;font-size:16px;letter-spacing:-.3px;text-decoration:none;color:var(--text)}
+    nav .back-link{font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+    nav .back-link:hover{color:var(--accent)}
+    .hero-section{padding-top:120px;padding-bottom:56px;max-width:var(--max-width);margin:0 auto;padding-left:24px;padding-right:24px}
+    .project-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .hero-section h1{font-size:34px;font-weight:700;letter-spacing:-.8px;line-height:1.2;margin-bottom:16px}
+    .hero-section .subtitle{font-size:17px;color:var(--text-secondary);max-width:600px;margin-bottom:24px}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+    .tag{font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;letter-spacing:.2px}
+    .tag.blue{background:#eff6ff;color:#2563eb}.tag.green{background:#ecfdf5;color:#059669}.tag.purple{background:#f5f3ff;color:#7c3aed}.tag.orange{background:#fff7ed;color:#ea580c}.tag.pink{background:#fdf2f8;color:#db2777}.tag.gray{background:#f3f4f6;color:#4b5563}
+    .divider{max-width:var(--max-width);margin:0 auto;padding:0 24px}
+    .divider hr{border:none;border-top:1px solid var(--border)}
+    section{max-width:var(--max-width);margin:0 auto;padding:56px 24px}
+    section h2{font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:16px}
+    section p{color:var(--text-secondary);margin-bottom:16px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+    .card h3{font-size:16px;font-weight:600;margin-bottom:8px}
+    .card p{margin-bottom:0}
+    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .feature-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .feature-list li{padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:14px;display:flex;align-items:flex-start;gap:10px}
+    .feature-list li .num{font-weight:700;color:var(--accent);min-width:24px}
+    .process-step{display:flex;gap:20px;align-items:flex-start;margin-bottom:20px}
+    .step-marker{width:36px;height:36px;border-radius:50%;background:var(--accent-light);color:var(--accent);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .step-content h4{font-size:15px;font-weight:600;margin-bottom:4px}
+    .step-content p{font-size:14px;color:var(--text-secondary);margin:0}
+    .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center}
+    .stat .value{font-size:28px;font-weight:700;color:var(--accent);margin-bottom:4px}
+    .stat .label{font-size:12px;color:var(--text-secondary);font-weight:500}
+    .cta-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:40px;text-align:center}
+    .cta-box h2{margin-bottom:8px}
+    .cta-box p{max-width:400px;margin:0 auto 20px}
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:var(--shadow-md)}
+    footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--text-secondary);border-top:1px solid var(--border)}
+    .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:640px){.hero-section{padding-top:100px}.hero-section h1{font-size:26px}.three-col,.stat-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <nav><div class="nav-inner">
+    <a href="index.html" class="logo">Sally May Saclauso</a>
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+  </div></nav>
+
+  <div class="hero-section">
+    <div class="project-label">Project 04</div>
+    <h1>Customer Journey Orchestration System</h1>
+    <p class="subtitle">A comprehensive marketing and CRM journey orchestration framework — mapping customer lifecycles, classifying campaigns into cadences, and routing contacts across an intelligent offer ladder.</p>
+    <div class="tags">
+      <span class="tag orange">GoHighLevel</span>
+      <span class="tag blue">CRM</span>
+      <span class="tag pink">Marketing Automation</span>
+      <span class="tag purple">Journey Mapping</span>
+    </div>
+  </div>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>The Problem</h2>
+    <p>Marketing teams and agencies struggle to maintain coherent customer journeys across multiple touchpoints. Campaigns operate in silos — onboarding emails don't connect to nurturing sequences, upsell offers fire at the wrong time, and reactivation campaigns overlap with active engagement. Without a unified orchestration layer, contacts fall through cracks and revenue leaks at every stage.</p>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>The Solution</h2>
+    <p>I built a customer journey orchestration skill that provides a structured framework for designing, auditing, and extending complete customer lifecycle systems. It classifies every campaign into one of three cadences, routes contacts through an intelligent offer ladder, and defines the exact GHL schema needed to execute.</p>
+    <div class="three-col">
+      <div class="card">
+        <h3>Onboarding</h3>
+        <p>First-touch sequences that welcome, educate, and activate new contacts with clear completion flags.</p>
+      </div>
+      <div class="card">
+        <h3>Nurturing</h3>
+        <p>Mid-funnel campaigns that build trust, deliver value, and move contacts toward purchase readiness.</p>
+      </div>
+      <div class="card">
+        <h3>Upselling</h3>
+        <p>Revenue-focused sequences that present the right offer at the right time based on engagement signals.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Process &amp; Workflow</h2>
+    <div class="process-step">
+      <div class="step-marker">1</div>
+      <div class="step-content"><h4>Journey Mapping</h4><p>Map the complete customer lifecycle — from first touch through repeat purchase and referral. Identify every stage, transition trigger, and decision point.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">2</div>
+      <div class="step-content"><h4>Campaign Classification</h4><p>Classify every existing and planned campaign into Onboarding, Nurturing, or Upselling cadences. Identify gaps and overlaps in coverage.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">3</div>
+      <div class="step-content"><h4>Offer Ladder Design</h4><p>Build the offer ladder — the sequence of value propositions that guide contacts from low-commitment to high-commitment actions.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">4</div>
+      <div class="step-content"><h4>GHL Schema Definition</h4><p>Define the GoHighLevel schema — custom fields, tags, pipeline stages, and completion flags that power the automation.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">5</div>
+      <div class="step-content"><h4>Edge Cases &amp; Reactivation</h4><p>Design paths for edge cases — contacts who stall, unsubscribe and return, skip stages, or need reactivation after dormancy.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">6</div>
+      <div class="step-content"><h4>Affiliate Path Design</h4><p>Layer in affiliate and referral paths that incentivise existing customers to bring in new contacts at the right journey stage.</p></div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Key Features</h2>
+    <ul class="feature-list">
+      <li><span class="num">01</span><div><strong>Three-cadence classification</strong> — every campaign maps cleanly to Onboarding, Nurturing, or Upselling with clear entry/exit criteria.</div></li>
+      <li><span class="num">02</span><div><strong>Intelligent offer ladder</strong> — contacts progress through offers based on engagement signals, not arbitrary timers.</div></li>
+      <li><span class="num">03</span><div><strong>GHL-native schema</strong> — outputs the exact custom fields, tags, and pipeline stages needed in GoHighLevel.</div></li>
+      <li><span class="num">04</span><div><strong>Reactivation handling</strong> — dormant contacts automatically enter recovery sequences with appropriate messaging.</div></li>
+      <li><span class="num">05</span><div><strong>Client-facing dashboards</strong> — journey visualisations that agencies can share with clients to demonstrate strategy.</div></li>
+    </ul>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Results &amp; Impact</h2>
+    <div class="stat-grid">
+      <div class="stat"><div class="value">3</div><div class="label">Campaign Cadences</div></div>
+      <div class="stat"><div class="value">6</div><div class="label">Workflow Stages</div></div>
+      <div class="stat"><div class="value">360&deg;</div><div class="label">Journey Coverage</div></div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Tools Used</h2>
+    <div class="tags">
+      <span class="tag orange">GoHighLevel</span>
+      <span class="tag blue">CRM Systems</span>
+      <span class="tag purple">Claude Custom Skill</span>
+      <span class="tag green">Journey Mapping</span>
+      <span class="tag pink">Marketing Automation</span>
+      <span class="tag gray">Affiliate Systems</span>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section>
+    <div class="cta-box fade-in">
+      <h2>Interested in this project?</h2>
+      <p>Let's discuss how a structured journey orchestration system could improve your marketing results.</p>
+      <a href="index.html#contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
+
+  <footer>&copy; 2026 Sally May Saclauso. Built with care.</footer>
+  <script>const observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:.1});document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));</script>
+</body>
+</html>

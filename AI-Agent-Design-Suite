@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Agent Design Suite — Sally May Saclauso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#fafafa;--surface:#fff;--text:#1a1a1a;--text-secondary:#6b7280;--accent:#2563eb;--accent-light:#eff6ff;--border:#e5e7eb;--radius:12px;--shadow-sm:0 1px 2px rgba(0,0,0,.04);--shadow-md:0 4px 16px rgba(0,0,0,.06);--max-width:760px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    nav .nav-inner{max-width:var(--max-width);margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+    nav .logo{font-weight:700;font-size:16px;letter-spacing:-.3px;text-decoration:none;color:var(--text)}
+    nav .back-link{font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+    nav .back-link:hover{color:var(--accent)}
+    .hero-section{padding-top:120px;padding-bottom:56px;max-width:var(--max-width);margin:0 auto;padding-left:24px;padding-right:24px}
+    .project-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .hero-section h1{font-size:34px;font-weight:700;letter-spacing:-.8px;line-height:1.2;margin-bottom:16px}
+    .hero-section .subtitle{font-size:17px;color:var(--text-secondary);max-width:600px;margin-bottom:24px}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+    .tag{font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;letter-spacing:.2px}
+    .tag.blue{background:#eff6ff;color:#2563eb}.tag.green{background:#ecfdf5;color:#059669}.tag.purple{background:#f5f3ff;color:#7c3aed}.tag.orange{background:#fff7ed;color:#ea580c}.tag.pink{background:#fdf2f8;color:#db2777}.tag.gray{background:#f3f4f6;color:#4b5563}
+    .divider{max-width:var(--max-width);margin:0 auto;padding:0 24px}
+    .divider hr{border:none;border-top:1px solid var(--border)}
+    section{max-width:var(--max-width);margin:0 auto;padding:56px 24px}
+    section h2{font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:16px}
+    section p{color:var(--text-secondary);margin-bottom:16px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+    .card h3{font-size:16px;font-weight:600;margin-bottom:8px}
+    .card p{margin-bottom:0}
+    .pipeline{display:flex;flex-direction:column;gap:0}
+    .pipe-step{display:flex;align-items:stretch;gap:0}
+    .pipe-line{display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0}
+    .pipe-dot{width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--accent-light);flex-shrink:0;margin-top:6px}
+    .pipe-connector{flex:1;width:2px;background:var(--border);margin:4px 0}
+    .pipe-card{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:16px}
+    .pipe-card h4{font-size:15px;font-weight:600;margin-bottom:4px}
+    .pipe-card p{font-size:14px;color:var(--text-secondary);margin:0}
+    .pipe-card .pipe-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;background:var(--accent-light);color:var(--accent);margin-bottom:8px}
+    .feature-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .feature-list li{padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:14px;display:flex;align-items:flex-start;gap:10px}
+    .feature-list li .num{font-weight:700;color:var(--accent);min-width:24px}
+    .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center}
+    .stat .value{font-size:28px;font-weight:700;color:var(--accent);margin-bottom:4px}
+    .stat .label{font-size:12px;color:var(--text-secondary);font-weight:500}
+    .cta-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:40px;text-align:center}
+    .cta-box h2{margin-bottom:8px}
+    .cta-box p{max-width:400px;margin:0 auto 20px}
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:var(--shadow-md)}
+    footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--text-secondary);border-top:1px solid var(--border)}
+    .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:640px){.hero-section{padding-top:100px}.hero-section h1{font-size:26px}.stat-grid{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+  <nav><div class="nav-inner">
+    <a href="index.html" class="logo">Sally May Saclauso</a>
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+  </div></nav>
+
+  <div class="hero-section">
+    <div class="project-label">Project 02</div>
+    <h1>AI Agent Workflow Design Suite</h1>
+    <p class="subtitle">A 4-skill sequential pipeline for designing, mapping, and deploying AI agent systems — built as custom Claude skills that work together in sequence.</p>
+    <div class="tags">
+      <span class="tag purple">Claude Skills</span>
+      <span class="tag blue">Workflow Design</span>
+      <span class="tag green">Agent Architecture</span>
+      <span class="tag orange">MCP Servers</span>
+    </div>
+  </div>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>The Problem</h2>
+    <p>Designing AI agent systems is complex — you need to think about task decomposition, data flows, tool dependencies, and deployment simultaneously. Most people either over-engineer with custom frameworks or under-plan and end up with brittle automations. There was no structured, repeatable methodology for going from business process to working agent architecture.</p>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>The Solution</h2>
+    <p>I built a 4-skill pipeline that breaks agent design into sequential, manageable layers. Each skill handles one dimension of the architecture, and they're designed to run in order — each one building on the output of the previous. The suite lives as custom Claude skills, so it's always available when I'm working in Cowork.</p>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>The Pipeline</h2>
+    <div class="pipeline">
+      <div class="pipe-step">
+        <div class="pipe-line"><div class="pipe-dot"></div><div class="pipe-connector"></div></div>
+        <div class="pipe-card">
+          <div class="pipe-tag">Skill 1</div>
+          <h4>Workflow Mapper</h4>
+          <p>Maps any business process into a file tree structure, identifying instructions (prompts), tools, and data at each node. This is always the starting point — you need the task structure before anything else.</p>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-line"><div class="pipe-dot"></div><div class="pipe-connector"></div></div>
+        <div class="pipe-card">
+          <div class="pipe-tag">Skill 2</div>
+          <h4>Data Mapper</h4>
+          <p>Takes the workflow map and identifies what each task reads, what it writes, where that data lives, and what format it's in. Defines the data layer — sources of truth, handoff formats, and storage locations.</p>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-line"><div class="pipe-dot"></div><div class="pipe-connector"></div></div>
+        <div class="pipe-card">
+          <div class="pipe-tag">Skill 3</div>
+          <h4>Tool Mapper</h4>
+          <p>Maps which MCP servers and external tools each task needs, what permissions are required, and what happens if a tool is unavailable. Turns abstract capabilities into concrete tool selections.</p>
+        </div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-line"><div class="pipe-dot"></div><div class="pipe-connector" style="background:transparent"></div></div>
+        <div class="pipe-card">
+          <div class="pipe-tag">Skill 4</div>
+          <h4>Deployment Writer</h4>
+          <p>Generates a complete DEPLOYMENT.md — prerequisites, environment setup, step-by-step instructions, configuration reference, verification steps, and rollback procedures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Key Design Principles</h2>
+    <ul class="feature-list">
+      <li><span class="num">01</span><div><strong>Sequential by design</strong> — each skill explicitly depends on the previous. You can't map data without knowing the workflow, and you can't pick tools without knowing the data.</div></li>
+      <li><span class="num">02</span><div><strong>No custom frameworks</strong> — the suite uses file trees and markdown, not code. Anyone can read and modify the output without learning a new tool.</div></li>
+      <li><span class="num">03</span><div><strong>Three-element model</strong> — every node in the system is defined by exactly three things: instructions, tools, and data. This constraint keeps designs clean and auditable.</div></li>
+      <li><span class="num">04</span><div><strong>Built for reuse</strong> — as Claude skills, the pipeline is instantly available in any conversation. No setup, no boilerplate.</div></li>
+    </ul>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Results &amp; Impact</h2>
+    <div class="stat-grid">
+      <div class="stat"><div class="value">4</div><div class="label">Custom Skills</div></div>
+      <div class="stat"><div class="value">3</div><div class="label">Design Layers</div></div>
+      <div class="stat"><div class="value">1</div><div class="label">Deploy Output</div></div>
+      <div class="stat"><div class="value">0</div><div class="label">Frameworks Needed</div></div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Tools Used</h2>
+    <div class="tags">
+      <span class="tag purple">Claude Cowork</span>
+      <span class="tag blue">Custom Skill Builder</span>
+      <span class="tag green">MCP Protocol</span>
+      <span class="tag gray">Markdown</span>
+      <span class="tag orange">File Tree Architecture</span>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section>
+    <div class="cta-box fade-in">
+      <h2>Interested in this project?</h2>
+      <p>I'd love to discuss how agent design methodology could help your automation needs.</p>
+      <a href="index.html#contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
+
+  <footer>&copy; 2026 Sally May Saclauso. Built with care.</footer>
+  <script>const observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:.1});document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));</script>
+</body>
+</html>

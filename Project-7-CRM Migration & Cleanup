@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRM Migration &amp; Cleanup — Sally May Saclauso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#fafafa;--surface:#fff;--text:#1a1a1a;--text-secondary:#6b7280;--accent:#2563eb;--accent-light:#eff6ff;--border:#e5e7eb;--radius:12px;--shadow-sm:0 1px 2px rgba(0,0,0,.04);--shadow-md:0 4px 16px rgba(0,0,0,.06);--max-width:760px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    nav .nav-inner{max-width:var(--max-width);margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between}
+    nav .logo{font-weight:700;font-size:16px;letter-spacing:-.3px;text-decoration:none;color:var(--text)}
+    nav .back-link{font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+    nav .back-link:hover{color:var(--accent)}
+    .hero-section{padding-top:120px;padding-bottom:56px;max-width:var(--max-width);margin:0 auto;padding-left:24px;padding-right:24px}
+    .project-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .hero-section h1{font-size:34px;font-weight:700;letter-spacing:-.8px;line-height:1.2;margin-bottom:16px}
+    .hero-section .subtitle{font-size:17px;color:var(--text-secondary);max-width:600px;margin-bottom:24px}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+    .tag{font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;letter-spacing:.2px}
+    .tag.blue{background:#eff6ff;color:#2563eb}.tag.green{background:#ecfdf5;color:#059669}.tag.purple{background:#f5f3ff;color:#7c3aed}.tag.orange{background:#fff7ed;color:#ea580c}.tag.pink{background:#fdf2f8;color:#db2777}.tag.gray{background:#f3f4f6;color:#4b5563}
+    .divider{max-width:var(--max-width);margin:0 auto;padding:0 24px}
+    .divider hr{border:none;border-top:1px solid var(--border)}
+    section{max-width:var(--max-width);margin:0 auto;padding:56px 24px}
+    section h2{font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:16px}
+    section p{color:var(--text-secondary);margin-bottom:16px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+    .card h3{font-size:16px;font-weight:600;margin-bottom:8px}
+    .card p{margin-bottom:0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .before-after{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+    .ba-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+    .ba-card .ba-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+    .ba-card .ba-label.before{color:#ef4444}
+    .ba-card .ba-label.after{color:#059669}
+    .ba-card ul{list-style:none;font-size:14px;color:var(--text-secondary)}
+    .ba-card ul li{padding:4px 0;display:flex;align-items:center;gap:8px}
+    .ba-card ul li::before{content:"";width:6px;height:6px;border-radius:50%;flex-shrink:0}
+    .ba-card.bad ul li::before{background:#fca5a5}
+    .ba-card.good ul li::before{background:#6ee7b7}
+    .process-step{display:flex;gap:20px;align-items:flex-start;margin-bottom:20px}
+    .step-marker{width:36px;height:36px;border-radius:50%;background:var(--accent-light);color:var(--accent);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .step-content h4{font-size:15px;font-weight:600;margin-bottom:4px}
+    .step-content p{font-size:14px;color:var(--text-secondary);margin:0}
+    .feature-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .feature-list li{padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:14px;display:flex;align-items:flex-start;gap:10px}
+    .feature-list li .num{font-weight:700;color:var(--accent);min-width:24px}
+    .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center}
+    .stat .value{font-size:28px;font-weight:700;color:var(--accent);margin-bottom:4px}
+    .stat .label{font-size:12px;color:var(--text-secondary);font-weight:500}
+    .cta-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:40px;text-align:center}
+    .cta-box h2{margin-bottom:8px}
+    .cta-box p{max-width:400px;margin:0 auto 20px}
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:var(--shadow-md)}
+    footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--text-secondary);border-top:1px solid var(--border)}
+    .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:640px){.hero-section{padding-top:100px}.hero-section h1{font-size:26px}.two-col,.before-after,.stat-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <nav><div class="nav-inner">
+    <a href="index.html" class="logo">Sally May Saclauso</a>
+    <a href="index.html#projects" class="back-link">&larr; All Projects</a>
+  </div></nav>
+
+  <div class="hero-section">
+    <div class="project-label">Project 07</div>
+    <h1>CRM Migration &amp; Database Cleanup</h1>
+    <p class="subtitle">Migrated and cleaned 20,000+ lead records from KW Command to BoomTown CRM — with AppScript-powered validation, deduplication, and real-time Slack notifications for 4 recruiters.</p>
+    <div class="tags">
+      <span class="tag blue">BoomTown</span>
+      <span class="tag orange">KW Command</span>
+      <span class="tag green">AppScript</span>
+      <span class="tag purple">Slack</span>
+    </div>
+  </div>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>The Problem</h2>
+    <p>The real estate team had accumulated over 20,000 lead records in KW Command that needed to migrate to BoomTown CRM. The data was messy — duplicate entries, inconsistent formatting, missing fields, outdated contact info, and no standardised tagging system. A straight import would have polluted the new CRM from day one, and manual cleanup at that scale was not realistic.</p>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>The Solution</h2>
+    <p>I built a multi-stage migration pipeline that cleaned, validated, deduplicated, and transformed the data before importing it into BoomTown. Then I layered on Slack notifications so recruiters got real-time alerts about new and updated leads in the clean system.</p>
+    <div class="before-after">
+      <div class="ba-card bad">
+        <div class="ba-label before">Before</div>
+        <ul>
+          <li>20,000+ records with duplicates</li>
+          <li>Inconsistent name/phone formats</li>
+          <li>Missing required fields</li>
+          <li>No standardised tags</li>
+          <li>Manual lead assignment</li>
+        </ul>
+      </div>
+      <div class="ba-card good">
+        <div class="ba-label after">After</div>
+        <ul>
+          <li>Clean, deduplicated database</li>
+          <li>Standardised formatting throughout</li>
+          <li>Validated and complete records</li>
+          <li>Consistent tagging system</li>
+          <li>Auto Slack notifications to agents</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Process &amp; Workflow</h2>
+    <div class="process-step">
+      <div class="step-marker">1</div>
+      <div class="step-content"><h4>Data Export &amp; Audit</h4><p>Exported all records from KW Command. Audited data quality — identified duplicates, formatting issues, missing fields, and orphaned records.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">2</div>
+      <div class="step-content"><h4>AppScript Validation</h4><p>Built custom Google AppScript functions to validate phone numbers, normalise name formatting, standardise address fields, and flag records with issues.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">3</div>
+      <div class="step-content"><h4>Deduplication</h4><p>Created matching algorithms to identify duplicate records by email, phone, and name similarity. Merged duplicates with preference rules for which source data to keep.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">4</div>
+      <div class="step-content"><h4>Tag Mapping &amp; Transformation</h4><p>Mapped KW Command tags and statuses to BoomTown's field structure. Created transformation rules that preserved lead history and engagement data.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">5</div>
+      <div class="step-content"><h4>Staged Import</h4><p>Imported cleaned data into BoomTown in batches — validating each batch against the target schema and running spot checks before proceeding.</p></div>
+    </div>
+    <div class="process-step">
+      <div class="step-marker">6</div>
+      <div class="step-content"><h4>Slack Integration</h4><p>Built Slack notifications for 4 recruiters — real-time alerts when new leads are assigned, status changes occur, or follow-up reminders trigger.</p></div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Key Features</h2>
+    <ul class="feature-list">
+      <li><span class="num">01</span><div><strong>AppScript validation engine</strong> — custom functions for phone, email, address, and name standardisation with configurable rules.</div></li>
+      <li><span class="num">02</span><div><strong>Smart deduplication</strong> — fuzzy matching across multiple fields ensures true duplicates are caught without over-merging.</div></li>
+      <li><span class="num">03</span><div><strong>Lossless transformation</strong> — field mapping preserves lead history, engagement scores, and notes from the source system.</div></li>
+      <li><span class="num">04</span><div><strong>Recruiter Slack alerts</strong> — each of the 4 recruiters gets personalised notifications for their assigned leads.</div></li>
+      <li><span class="num">05</span><div><strong>Batch import with validation</strong> — staged imports with per-batch quality checks prevent corrupted data from reaching production.</div></li>
+    </ul>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Results &amp; Impact</h2>
+    <div class="stat-grid">
+      <div class="stat"><div class="value">20K+</div><div class="label">Records Processed</div></div>
+      <div class="stat"><div class="value">4</div><div class="label">Recruiters on Slack</div></div>
+      <div class="stat"><div class="value">0</div><div class="label">Manual Data Entry</div></div>
+      <div class="stat"><div class="value">100%</div><div class="label">Validated Records</div></div>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section class="fade-in">
+    <h2>Tools Used</h2>
+    <div class="tags">
+      <span class="tag orange">KW Command</span>
+      <span class="tag blue">BoomTown CRM</span>
+      <span class="tag green">Google AppScript</span>
+      <span class="tag purple">Google Sheets</span>
+      <span class="tag pink">Slack API</span>
+      <span class="tag gray">Data Validation</span>
+    </div>
+  </section>
+
+  <div class="divider"><hr/></div>
+
+  <section>
+    <div class="cta-box fade-in">
+      <h2>Interested in this project?</h2>
+      <p>If you need a clean CRM migration or database overhaul, I'd love to help.</p>
+      <a href="index.html#contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
+
+  <footer>&copy; 2026 Sally May Saclauso. Built with care.</footer>
+  <script>const observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:.1});document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));</script>
+</body>
+</html>

@@ -3,435 +3,1094 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sally May Saclauso — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  <title>Sally May Saclauso | AI & Automation Specialist</title>
 
+  <!-- Google Fonts: warm editorial headings + clean technical body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
     :root {
-      --bg: #fafafa;
-      --surface: #ffffff;
-      --text: #1a1a1a;
-      --text-secondary: #6b7280;
-      --accent: #2563eb;
-      --accent-light: #eff6ff;
-      --border: #e5e7eb;
-      --radius: 12px;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
-      --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
-      --max-width: 960px;
+      --red: #DA1A33;
+      --red-dark: #A91425;
+      --navy: #0B1B4D;
+      --blue: #4285F4;
+      --green: #34A853;
+      --yellow: #FBBC05;
+      --bg: #F7FAFC;
+      --card: #FFFFFF;
+      --text: #1F2937;
+      --muted: #5F6B7A;
+      --border: #E5EAF0;
+      --soft-red: #FFF1F3;
+      --soft-blue: #EEF4FF;
+      --shadow: 0 18px 45px rgba(11, 27, 77, 0.08);
+      --radius: 24px;
+      --heading: 'Cormorant Garamond', serif;
+      --body: 'Inter', sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
+      font-family: var(--body);
       color: var(--text);
-      line-height: 1.7;
-      font-size: 15px;
-      -webkit-font-smoothing: antialiased;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(218, 26, 51, 0.08), transparent 24%),
+        radial-gradient(circle at 92% 10%, rgba(66, 133, 244, 0.13), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(250,250,250,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+    img {
+      max-width: 100%;
+      display: block;
     }
-    nav .nav-inner {
-      max-width: var(--max-width);
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 0 24px;
-      height: 56px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    nav .logo { font-weight: 700; font-size: 16px; letter-spacing: -0.3px; }
-    nav .nav-links { display: flex; gap: 28px; }
-    nav .nav-links a {
-      text-decoration: none; color: var(--text-secondary);
-      font-size: 13px; font-weight: 500; letter-spacing: 0.3px;
-      text-transform: uppercase; transition: color 0.2s;
-    }
-    nav .nav-links a:hover { color: var(--text); }
-
-    /* ── SECTIONS ── */
-    section { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
-
-    .section-label {
-      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
-    }
-    .section-title {
-      font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 40px;
     }
 
-    /* ── HERO ── */
-    .hero {
-      padding-top: 140px; padding-bottom: 80px;
-      display: flex; align-items: center; gap: 56px;
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(229, 234, 240, 0.9);
     }
-    .hero-photo {
-      width: 160px; height: 160px; border-radius: 50%;
-      background: linear-gradient(135deg, #dbeafe, #c7d2fe);
-      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-      font-size: 48px; color: var(--accent); font-weight: 300;
-      box-shadow: var(--shadow-md);
+
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
-    .hero-text h1 {
-      font-size: 36px; font-weight: 700; letter-spacing: -0.8px; line-height: 1.2;
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 220px;
     }
-    .hero-text .tagline {
-      font-size: 17px; color: var(--text-secondary); margin-top: 12px; font-weight: 400;
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: var(--red);
+      background: var(--soft-red);
+      font-family: var(--heading);
+      font-weight: 700;
+      font-size: 30px;
+      box-shadow: 0 8px 20px rgba(218, 26, 51, 0.12);
     }
-    .hero-text .bio {
-      margin-top: 20px; color: var(--text-secondary); max-width: 520px; font-size: 15px;
+
+    .brand-name {
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.03em;
     }
-    .hero-cta {
-      margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap;
+
+    .brand-role {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
     .btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 500;
-      text-decoration: none; transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer;
     }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: var(--shadow-md); }
-    .btn-outline { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ── DIVIDER ── */
-    .divider {
-      max-width: var(--max-width); margin: 0 auto; padding: 0 24px;
+    .btn:hover {
+      transform: translateY(-2px);
     }
-    .divider hr { border: none; border-top: 1px solid var(--border); }
 
-    /* ── SKILLS ── */
-    .skills { padding-top: 72px; padding-bottom: 72px; }
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      box-shadow: 0 16px 30px rgba(218, 26, 51, 0.22);
     }
-    .skill-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 24px;
-      transition: all 0.2s;
-    }
-    .skill-card:hover {
-      border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-2px);
-    }
-    .skill-card .icon {
-      width: 40px; height: 40px; border-radius: 10px;
-      background: var(--accent-light); display: flex; align-items: center;
-      justify-content: center; font-size: 18px; margin-bottom: 14px;
-    }
-    .skill-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-    .skill-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
 
-    /* ── PROJECTS ── */
-    .projects { padding-top: 72px; padding-bottom: 72px; }
-    .project-list { display: flex; flex-direction: column; gap: 20px; }
+    .btn-primary:hover {
+      background: var(--red-dark);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--navy);
+      border-color: var(--border);
+    }
+
+    .section {
+      padding: 84px 0;
+    }
+
+    .hero {
+      padding: 90px 0 54px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::after {
+      content: '';
+      width: 54px;
+      height: 2px;
+      background: var(--red);
+      border-radius: 999px;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--heading);
+      color: var(--navy);
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+    }
+
+    h1 {
+      font-size: clamp(54px, 7.2vw, 92px);
+      max-width: 720px;
+      margin-bottom: 26px;
+    }
+
+    h1 .accent,
+    h2 .accent {
+      color: var(--red);
+    }
+
+    .hero-copy {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+
+    .hero-copy strong {
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+
+    .micro-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .micro-proof span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--navy);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 8px 22px rgba(11, 27, 77, 0.04);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 500px;
+      display: grid;
+      place-items: center;
+    }
+
+    .dashboard-card {
+      width: 100%;
+      max-width: 610px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+
+    .browser-dots span {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .browser-dots span:nth-child(1) { background: #EA4335; }
+    .browser-dots span:nth-child(2) { background: #FBBC05; }
+    .browser-dots span:nth-child(3) { background: #34A853; }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .metric small {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--navy);
+      font-size: 24px;
+      margin-top: 6px;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 14px;
+    }
+
+    .chart-box,
+    .workflow-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      min-height: 190px;
+    }
+
+    .chart-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .bars {
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      height: 120px;
+      padding-top: 12px;
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 999px 999px 6px 6px;
+      background: linear-gradient(180deg, var(--blue), #9bc0ff);
+      min-height: 24px;
+    }
+
+    .bar:nth-child(2n) { background: linear-gradient(180deg, var(--red), #ff94a3); }
+    .bar:nth-child(3n) { background: linear-gradient(180deg, var(--green), #a9dfbd); }
+
+    .workflow-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .workflow-list div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 700;
+      background: white;
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    .status {
+      font-size: 10px;
+      color: #0F9D58;
+      background: #E7F7EE;
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+
+    .tool-float {
+      position: absolute;
+      z-index: 4;
+      width: 76px;
+      height: 76px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      font-size: 30px;
+    }
+
+    .tool-float.one { top: 12px; left: 4%; }
+    .tool-float.two { top: 82px; right: 3%; }
+    .tool-float.three { bottom: 58px; left: 0; }
+    .tool-float.four { bottom: 12px; right: 12%; }
+
+    .dash-line {
+      position: absolute;
+      inset: 50px 30px 60px 40px;
+      border: 2px dashed rgba(66, 133, 244, 0.35);
+      border-radius: 40px;
+      z-index: 1;
+    }
+
+    .tool-strip {
+      padding: 24px 0;
+      background: rgba(255, 255, 255, 0.78);
+      border-block: 1px solid var(--border);
+    }
+
+    .tool-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 34px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tool-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--navy);
+      font-size: 14px;
+      letter-spacing: 0;
+      text-transform: none;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 15px;
+      box-shadow: 0 8px 22px rgba(11, 27, 77, 0.04);
+    }
+
+    .split-card {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .portrait-placeholder {
+      min-height: 360px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(218, 26, 51, 0.18), rgba(66, 133, 244, 0.08)),
+        url('./assets/profile-red-coat.jpg');
+      background-size: cover;
+      background-position: center;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portrait-placeholder::after {
+      content: 'Replace with ./assets/profile-red-coat.jpg';
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .about-copy h2 {
+      font-size: clamp(40px, 5vw, 64px);
+      margin-bottom: 20px;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 620px;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .pillar-card,
+    .project-card,
+    .service-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 10px 28px rgba(11, 27, 77, 0.05);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--soft-red);
+      color: var(--red);
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .pillar-card h3,
+    .project-card h3,
+    .service-card h3 {
+      font-family: var(--body);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .pillar-card p,
+    .project-card p,
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(42px, 5vw, 70px);
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
     .project-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 28px 32px;
-      display: flex; gap: 24px; align-items: flex-start;
-      transition: all 0.2s;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
     }
-    .project-card:hover {
-      border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-2px);
+
+    .project-visual {
+      height: 135px;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--soft-blue), white);
+      overflow: hidden;
+      position: relative;
     }
-    .project-number {
-      font-size: 32px; font-weight: 700; color: #e5e7eb;
-      min-width: 48px; line-height: 1; padding-top: 4px;
+
+    .project-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    .project-info { flex: 1; }
-    .project-info h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
-    .project-info p { font-size: 14px; color: var(--text-secondary); margin-bottom: 14px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .project-visual::after {
+      content: 'Upload image';
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--muted);
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 8px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
     .tag {
-      font-size: 11px; font-weight: 500; padding: 4px 10px;
-      background: var(--accent-light); color: var(--accent);
-      border-radius: 20px; letter-spacing: 0.2px;
+      font-size: 11px;
+      color: var(--navy);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-weight: 800;
     }
-    .tag.green { background: #ecfdf5; color: #059669; }
-    .tag.purple { background: #f5f3ff; color: #7c3aed; }
-    .tag.orange { background: #fff7ed; color: #ea580c; }
-    .tag.pink { background: #fdf2f8; color: #db2777; }
 
-    /* ── CUSTOM SKILLS ── */
-    .custom-skills { padding-top: 72px; padding-bottom: 72px; }
-    .cs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
-    .cs-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 20px; text-align: center;
-      transition: all 0.2s;
+    .workflow-map {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 38px;
+      align-items: center;
     }
-    .cs-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-    .cs-card .cs-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-    }
-    .cs-card h4 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-    .cs-card p { font-size: 12px; color: var(--text-secondary); }
 
-    /* ── CONTACT ── */
-    .contact { padding-top: 72px; padding-bottom: 100px; }
-    .contact-box {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 48px; text-align: center;
-      box-shadow: var(--shadow-sm);
+    .map-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
-    .contact-box h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-    .contact-box p { color: var(--text-secondary); margin-bottom: 28px; max-width: 420px; margin-left: auto; margin-right: auto; }
-    .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-    .contact-link {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px; border: 1px solid var(--border);
-      border-radius: 8px; text-decoration: none; color: var(--text);
-      font-size: 14px; font-weight: 500; background: var(--surface);
-      transition: all 0.2s;
-    }
-    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
-    .contact-link svg { width: 16px; height: 16px; }
 
-    /* ── FOOTER ── */
-    footer {
-      text-align: center; padding: 32px 24px;
-      font-size: 12px; color: var(--text-secondary);
+    .map-node {
+      min-width: 118px;
+      min-height: 96px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 14px;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .map-node span {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .arrow {
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 26px;
+    }
+
+    .workflow-map h2 {
+      font-size: clamp(38px, 4vw, 58px);
+      margin-bottom: 16px;
+    }
+
+    .workflow-map p {
+      color: var(--muted);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .service-card {
+      padding: 20px;
+    }
+
+    .service-card .icon {
+      width: 44px;
+      height: 44px;
+      font-size: 19px;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--navy), #061136);
+      color: white;
+      border-radius: 34px;
+      padding: 46px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: rgba(218, 26, 51, 0.2);
+      right: -90px;
+      top: -120px;
+    }
+
+    .cta h2 {
+      color: white;
+      font-size: clamp(42px, 5vw, 68px);
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 560px;
+    }
+
+    .footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
       border-top: 1px solid var(--border);
+      padding-top: 24px;
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      .hero { flex-direction: column; text-align: center; gap: 32px; padding-top: 110px; }
-      .hero-text .bio { margin-left: auto; margin-right: auto; }
-      .hero-cta { justify-content: center; }
-      .project-card { flex-direction: column; gap: 12px; }
-      .project-number { font-size: 24px; min-width: auto; }
-      .nav-links { gap: 16px; }
-      .nav-links a { font-size: 11px; }
-      .contact-box { padding: 32px 20px; }
+    @media (max-width: 980px) {
+      .hero-grid,
+      .split-card,
+      .workflow-map,
+      .cta {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pillars,
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-visual {
+        min-height: auto;
+      }
     }
 
-    /* ── FADE IN ── */
-    .fade-in {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      .dashboard-grid,
+      .chart-row,
+      .projects-grid,
+      .pillars,
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+
+      .split-card,
+      .workflow-map,
+      .cta {
+        padding: 28px;
+      }
+
+      .tool-float,
+      .dash-line {
+        display: none;
+      }
+
+      h1 {
+        font-size: 50px;
+      }
     }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="Sally May Saclauso home">
+        <div class="brand-mark">S</div>
+        <div>
+          <div class="brand-name">Sally May Saclauso</div>
+          <div class="brand-role">AI & Automation Specialist</div>
+        </div>
+      </a>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-inner">
-      <div class="logo">Sally May Saclauso</div>
-      <div class="nav-links">
+      <nav class="nav-links" aria-label="Primary navigation">
         <a href="#about">About</a>
-        <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#services">Services</a>
         <a href="#contact">Contact</a>
-      </div>
+      </nav>
+
+      <a class="btn btn-primary" href="mailto:sallymayjob@gmail.com">Let’s Connect →</a>
     </div>
-  </nav>
+  </header>
 
-  <!-- HERO -->
-  <section class="hero" id="about">
-    <div class="hero-photo">S</div>
-    <div class="hero-text">
-      <h1>Sally May Saclauso</h1>
-      <div class="tagline">AI Automation &amp; Operations Systems Specialist</div>
-      <p class="bio">
-        I design human-centered workflow systems that turn messy operations into clear, trackable, and reliable processes using Google Workspace, Apps Script, dashboards, AI tools, and documentation.
-      </p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-outline">Get in Touch</a>
-      </div>
-    </div>
-  </section>
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">AI & Automation Specialist</div>
+          <h1>I build <span class="accent">Google-based</span> workflow systems</h1>
+          <p class="hero-copy">
+            I design human-centered automation using <strong>Google Workspace, Apps Script, Sheets, Gmail, Drive,</strong> and AI-assisted process design — turning repetitive admin work into clear, trackable workflows.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View Projects →</a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+          </div>
+          <div class="micro-proof">
+            <span><i class="dot"></i> Google ecosystem</span>
+            <span><i class="dot"></i> Safe automations</span>
+            <span><i class="dot"></i> Human review</span>
+          </div>
+        </div>
 
-  <div class="divider"><hr /></div>
+        <div class="hero-visual" aria-label="Automation dashboard illustration">
+          <div class="dash-line"></div>
+          <div class="tool-float one">📄</div>
+          <div class="tool-float two">⚙️</div>
+          <div class="tool-float three">✉️</div>
+          <div class="tool-float four">📁</div>
 
-  <!-- SKILLS -->
-  <section class="skills" id="skills">
-    <div class="section-label">Expertise</div>
-    <h2 class="section-title">What I Do</h2>
-    <div class="skills-grid">
-      <div class="skill-card fade-in">
-        <div class="icon">&#9881;</div>
-        <h3>AI Workflow Automation</h3>
-        <p>Google Workspace, Apps Script, Slack, Airtable, Zapier, and AI-assisted workflow design for repetitive business processes.</p>
-      </div>
-      <div class="skill-card fade-in">
-        <div class="icon">&#128203;</div>
-        <h3>Operations Systems Design</h3>
-        <p>Process mapping, SOPs, trackers, dashboards, handoff flows, and system documentation for small teams.</p>
-      </div>
-      <div class="skill-card fade-in">
-        <div class="icon">&#128200;</div>
-        <h3>Google Sheets Dashboards</h3>
-        <p>Operational dashboards, KPI trackers, reporting systems, data cleanup, and lightweight databases using Google Sheets.</p>
-      </div>
-      <div class="skill-card fade-in">
-        <div class="icon">&#128450;</div>
-        <h3>Inbox, Drive &amp; Admin Automation</h3>
-        <p>Email sorting, Google Drive inventory, file organization, reminders, labels, logs, and admin workflow support.</p>
-      </div>
-      <div class="skill-card fade-in">
-        <div class="icon">&#127891;</div>
-        <h3>Training &amp; LMS Systems</h3>
-        <p>Slack-based learning systems, onboarding workflows, lesson delivery, learner tracking, and progress reporting.</p>
-      </div>
-      <div class="skill-card fade-in">
-        <div class="icon">&#129302;</div>
-        <h3>AI Agent &amp; Prompt Systems</h3>
-        <p>Custom AI workflows, prompt systems, knowledge-base structure, tool mapping, and human review design.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"><hr /></div>
-
-  <!-- APPROACH -->
-  <section class="skills" id="approach">
-    <div class="section-label">Process</div>
-    <h2 class="section-title">My Approach</h2>
-    <div class="skill-card fade-in">
-      <p>I do not start with tools first. I start with the workflow: what needs to happen, who owns it, where the data comes from, what should be automated, what needs human review, and what should be tracked or escalated.</p>
-      <p style="margin-top:16px;">My goal is to build systems that are practical, visible, and safe enough for real people to use.</p>
-      <p style="margin-top:16px;"><strong>Simple first. Reliable next. Scalable later.</strong></p>
-    </div>
-  </section>
-
-  <div class="divider"><hr /></div>
-
-  <!-- PROJECTS -->
-  <section class="projects" id="projects">
-    <div class="section-label">Portfolio</div>
-    <h2 class="section-title">Selected Projects</h2>
-    <div class="project-list">
-      <div class="project-card fade-in">
-        <div class="project-number">01</div>
-        <div class="project-info">
-          <h3>Email Inventory Automation</h3>
-          <p>A Gmail + Google Apps Script system that labels and categorizes emails without deleting, archiving, or marking messages as read. Built with rule-based sorting, logs, status tracking, and Google Sheets as the control panel.</p>
-          <div class="tags"><span class="tag">Google Apps Script</span><span class="tag green">Gmail</span><span class="tag purple">Google Sheets</span><span class="tag orange">Email Automation</span><span class="tag pink">Safety-First Workflow</span></div>
+          <div class="dashboard-card">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="dashboard-grid">
+              <div class="metric"><small>Workflows</small><strong>28</strong></div>
+              <div class="metric"><small>Tasks Saved</small><strong>642</strong></div>
+              <div class="metric"><small>Time Saved</small><strong>128h</strong></div>
+              <div class="metric"><small>Success</small><strong>98%</strong></div>
+            </div>
+            <div class="chart-row">
+              <div class="chart-box">
+                <div class="chart-title">Automation Activity</div>
+                <div class="bars">
+                  <div class="bar" style="height:45%"></div>
+                  <div class="bar" style="height:68%"></div>
+                  <div class="bar" style="height:52%"></div>
+                  <div class="bar" style="height:80%"></div>
+                  <div class="bar" style="height:72%"></div>
+                  <div class="bar" style="height:94%"></div>
+                  <div class="bar" style="height:64%"></div>
+                </div>
+              </div>
+              <div class="workflow-box">
+                <div class="chart-title">Top Workflows</div>
+                <div class="workflow-list">
+                  <div>Lead Intake <span class="status">Active</span></div>
+                  <div>Email Sorter <span class="status">Active</span></div>
+                  <div>Drive Audit <span class="status">Review</span></div>
+                  <div>Report Sync <span class="status">Active</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="project-card fade-in">
-        <div class="project-number">02</div>
-        <div class="project-info">
-          <h3>Google Drive File Inventory System</h3>
-          <p>A Drive audit workflow that scans files, extracts metadata, categorizes assets, and sends results into Google Sheets for review. Designed to create visibility before automating file movement or cleanup.</p>
-          <div class="tags"><span class="tag">Google Drive</span><span class="tag green">Apps Script</span><span class="tag purple">Google Sheets</span><span class="tag orange">File Inventory</span><span class="tag pink">Operations</span></div>
+    </section>
+
+    <section class="tool-strip" aria-label="Tools used">
+      <div class="container tool-strip-inner">
+        <span>Built with tools I know and love</span>
+        <span class="tool-chip">📊 Google Sheets</span>
+        <span class="tool-chip">⚙️ Apps Script</span>
+        <span class="tool-chip">✉️ Gmail</span>
+        <span class="tool-chip">📁 Drive</span>
+        <span class="tool-chip">🧾 Forms</span>
+        <span class="tool-chip">📈 Dashboards</span>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container split-card">
+        <div class="portrait-placeholder" role="img" aria-label="Upload Sally May Saclauso portrait here"></div>
+        <div class="about-copy">
+          <div class="eyebrow">About Me</div>
+          <h2>I design systems that support <span class="accent">people.</span></h2>
+          <p>
+            I help small teams organize data, reduce repetitive admin work, and create workflows that are easier to track, document, and improve.
+          </p>
+          <p>
+            My approach blends technical automation with human understanding — so systems work for people, not the other way around.
+          </p>
+
+          <div class="pillars">
+            <div class="pillar-card">
+              <div class="icon">👁️</div>
+              <h3>Visibility</h3>
+              <p>Dashboards, logs, and status tracking that make work easier to see.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="icon">⚙️</div>
+              <h3>Automation</h3>
+              <p>Safe rule-based workflows that reduce repetitive manual tasks.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="icon">📁</div>
+              <h3>Organization</h3>
+              <p>Cleaner files, labels, data, and processes teams can follow.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="icon">🛡️</div>
+              <h3>Trust</h3>
+              <p>Logs, review points, and safety-first automation decisions.</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="project-card fade-in">
-        <div class="project-number">03</div>
-        <div class="project-info">
-          <h3>AI Visibility Audit Framework</h3>
-          <p>A visibility audit system that maps brand presence across social media, SEO, AEO, and GEO. Designed to turn AI-assisted analysis into clearer positioning, content decisions, and visibility workflows.</p>
-          <div class="tags"><span class="tag">AI Audit</span><span class="tag green">SEO</span><span class="tag purple">AEO</span><span class="tag orange">GEO</span><span class="tag pink">Content Strategy</span><span class="tag">Visibility</span></div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Featured Projects</div>
+            <h2>Systems I’ve built</h2>
+          </div>
+          <p>Short proof-of-work cards focused on dashboards, workflow maps, and practical automation outcomes.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-visual">
+              <img src="./assets/project-ai-visibility-audit.png" alt="AI visibility audit dashboard placeholder" />
+            </div>
+            <h3>AI Visibility Audit Framework</h3>
+            <p>Maps brand visibility across social media, SEO, AEO, and GEO so content can become easier to find and trust.</p>
+            <div class="tags"><span class="tag">AI Research</span><span class="tag">Strategy</span><span class="tag">Visibility</span></div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual">
+              <img src="./assets/project-email-inventory.png" alt="Email inventory automation dashboard placeholder" />
+            </div>
+            <h3>Email Inventory Automation</h3>
+            <p>Organizes Gmail with safe label-based routing, Google Sheets tracking, skipped logs, and error visibility.</p>
+            <div class="tags"><span class="tag">Gmail</span><span class="tag">Sheets</span><span class="tag">Apps Script</span></div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual">
+              <img src="./assets/project-drive-inventory.png" alt="Google Drive inventory automation dashboard placeholder" />
+            </div>
+            <h3>Drive File Inventory Automation</h3>
+            <p>Scans Drive, extracts metadata, categorizes files, and sends structured inventory into Google Sheets.</p>
+            <div class="tags"><span class="tag">Drive</span><span class="tag">Sheets</span><span class="tag">Apps Script</span></div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual">
+              <img src="./assets/project-systems-before-agents.png" alt="Workflow map diagram placeholder" />
+            </div>
+            <h3>Systems Before AI Agents</h3>
+            <p>A workflow design principle focused on clean data, ownership, logs, and review points before layering AI agents.</p>
+            <div class="tags"><span class="tag">Workflow Design</span><span class="tag">AI Ops</span></div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual">
+              <img src="./assets/project-sop-documentation.png" alt="SOP and workflow documentation placeholder" />
+            </div>
+            <h3>Workflow Documentation & SOP Design</h3>
+            <p>Turns messy processes into triggers, inputs, steps, outputs, exceptions, and handoff points.</p>
+            <div class="tags"><span class="tag">SOPs</span><span class="tag">Process Maps</span></div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual">
+              <img src="./assets/project-dashboard-reporting.png" alt="Operations dashboard reporting placeholder" />
+            </div>
+            <h3>Operations Dashboard</h3>
+            <p>Creates a clear view of work status, automation results, and follow-up priorities for small teams.</p>
+            <div class="tags"><span class="tag">Dashboards</span><span class="tag">Reporting</span></div>
+          </article>
         </div>
       </div>
-      <div class="project-card fade-in">
-        <div class="project-number">04</div>
-        <div class="project-info">
-          <h3>Slack-Based LMS for Operations Training</h3>
-          <p>A Slack-based learning workflow for onboarding and operations training, with lesson delivery, learner tracking, submissions, reminders, and reporting.</p>
-          <div class="tags"><span class="tag">Slack</span><span class="tag green">LMS</span><span class="tag purple">Google Sheets</span><span class="tag orange">Apps Script</span><span class="tag pink">Training Automation</span></div>
+    </section>
+
+    <section id="workflow" class="section">
+      <div class="container workflow-map">
+        <div>
+          <div class="eyebrow">How I Build Workflows</div>
+          <div class="map-row" aria-label="Workflow map">
+            <div class="map-node"><span>⚡</span>Trigger</div>
+            <div class="arrow">→</div>
+            <div class="map-node"><span>🧾</span>Data Input</div>
+            <div class="arrow">→</div>
+            <div class="map-node"><span>⚙️</span>Process</div>
+            <div class="arrow">→</div>
+            <div class="map-node"><span>📊</span>Track</div>
+            <div class="arrow">→</div>
+            <div class="map-node"><span>✉️</span>Notify</div>
+          </div>
+        </div>
+        <div>
+          <h2>Simple on the inside. Powerful on the outside.</h2>
+          <p>Every workflow needs clean input, smart processing, visible logs, and a clear human review point before it becomes trusted automation.</p>
         </div>
       </div>
-      <div class="project-card fade-in">
-        <div class="project-number">05</div>
-        <div class="project-info">
-          <h3>AI Agent Workflow Design Suite</h3>
-          <p>A structured workflow for designing AI agents before building them, including workflow mapping, data mapping, tool mapping, review points, and deployment documentation.</p>
-          <div class="tags"><span class="tag">AI Agents</span><span class="tag green">Workflow Design</span><span class="tag purple">Prompt Systems</span><span class="tag orange">Documentation</span></div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Services</div>
+            <h2>How I can help</h2>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card"><div class="icon">📊</div><h3>Google Workspace Automation</h3><p>Sheets, Drive, Forms, Gmail, and simple system design.</p></div>
+          <div class="service-card"><div class="icon">⚙️</div><h3>Apps Script Builds</h3><p>Custom scripts that connect, automate, and simplify work.</p></div>
+          <div class="service-card"><div class="icon">📈</div><h3>Sheets Dashboards</h3><p>Clear views for tracking work, status, and outcomes.</p></div>
+          <div class="service-card"><div class="icon">✉️</div><h3>Gmail & Drive Automation</h3><p>Organize files, emails, and operational data safely.</p></div>
+          <div class="service-card"><div class="icon">🧭</div><h3>SOP Documentation</h3><p>Turn messy operations into clear repeatable steps.</p></div>
+          <div class="service-card"><div class="icon">✨</div><h3>AI-Assisted Ops</h3><p>Use AI to map, structure, and improve workflows.</p></div>
         </div>
       </div>
-      <div class="project-card fade-in">
-        <div class="project-number">06</div>
-        <div class="project-info">
-          <h3>Acquisition Analysis Pipeline</h3>
-          <p>An AI-assisted extraction and reporting workflow for organizing financial, payroll, HR, and operational files from Google Drive into structured review outputs.</p>
-          <div class="tags"><span class="tag">Google Drive</span><span class="tag green">AI Extraction</span><span class="tag purple">Google Sheets</span><span class="tag orange">Reporting</span><span class="tag pink">Due Diligence</span></div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container cta">
+        <div>
+          <h2>Let’s build clearer workflows.</h2>
+          <p>Need help turning repetitive admin work into a simple, trackable automation system? Let’s connect.</p>
         </div>
+        <a class="btn btn-primary" href="mailto:sallymayjob@gmail.com">sallymayjob@gmail.com →</a>
       </div>
-      <div class="project-card fade-in">
-        <div class="project-number">07</div>
-        <div class="project-info">
-          <h3>CRM &amp; Customer Journey System</h3>
-          <p>A workflow system for mapping customer journeys, tags, stages, lead sources, follow-ups, and campaign movement inside CRM and marketing automation tools.</p>
-          <div class="tags"><span class="tag">CRM</span><span class="tag green">GoHighLevel</span><span class="tag purple">Marketing Automation</span><span class="tag orange">Customer Journey</span></div>
-        </div>
-      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 Sally May Saclauso. All rights reserved.</span>
+      <span>Built with care, clarity, and automation.</span>
     </div>
-  </section>
-
-  <div class="divider"><hr /></div>
-
-  <!-- CUSTOM SKILLS BUILT -->
-  <section class="custom-skills">
-    <div class="section-label">Workflow Stack</div>
-    <h2 class="section-title">Workflow Skills &amp; AI Systems</h2>
-    <div class="cs-grid">
-      <div class="cs-card fade-in"><div class="cs-icon" style="background:#eff6ff;">&#128736;</div><h4>Workflow Mapper</h4><p>Process and handoff mapping</p></div>
-      <div class="cs-card fade-in"><div class="cs-icon" style="background:#ecfdf5;">&#128451;</div><h4>Data Mapper</h4><p>Fields, sources, and system logic</p></div>
-      <div class="cs-card fade-in"><div class="cs-icon" style="background:#f5f3ff;">&#128295;</div><h4>Tool Mapper</h4><p>Platform and automation dependencies</p></div>
-      <div class="cs-card fade-in"><div class="cs-icon" style="background:#fff7ed;">&#9997;</div><h4>SOP Writer</h4><p>Process documentation</p></div>
-      <div class="cs-card fade-in"><div class="cs-icon" style="background:#fdf2f8;">&#128202;</div><h4>Sheets Dashboard Builder</h4><p>Trackers and reporting views</p></div>
-      <div class="cs-card fade-in"><div class="cs-icon" style="background:#fefce8;">&#9881;</div><h4>Apps Script Builder</h4><p>Google Workspace automation</p></div>
-      <div class="cs-card fade-in"><div class="cs-icon" style="background:#f0fdf4;">&#129302;</div><h4>AI Content Workflow Designer</h4><p>Structured content systems</p></div>
-      <div class="cs-card fade-in"><div class="cs-icon" style="background:#eef2ff;">&#9989;</div><h4>QA / Human Review Designer</h4><p>Review gates and safety checks</p></div>
-    </div>
-  </section>
-
-  <div class="divider"><hr /></div>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="contact-box fade-in">
-      <h2>Let's Work Together</h2>
-      <p>I am open to freelance projects, remote roles, and consulting work related to AI automation, operations systems, Google Workspace automation, dashboards, and workflow documentation.</p>
-      <div class="contact-links">
-        <a href="mailto:[sallymayjob@gmail.com]" class="contact-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
-          sallymayjob@gmail.com
-        </a>
-        <a href="https://www.linkedin.com/in/sallysaclauso/" class="contact-link" target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
-          LinkedIn
-        </a>
-        <a href="tel:+63 908 924 6871" class="contact-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          +63 908 924 6871
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2026 Sally May Saclauso. Built with care.
   </footer>
-
-  <!-- SCROLL ANIMATION -->
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
-
 </body>
 </html>
